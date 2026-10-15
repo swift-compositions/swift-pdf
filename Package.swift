@@ -16,6 +16,7 @@ let package = Package(
         .library(name: "PDF Test Support", targets: ["PDF Test Support"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/swift-atoms/swift-byte.git", branch: "main"),
         .package(url: "https://github.com/swift-compositions/swift-html.git", branch: "main"),
         .package(
             url: "https://github.com/swift-compositions/swift-pdf-html-render.git",
@@ -42,6 +43,7 @@ let package = Package(
         .testTarget(
             name: "PDF Tests",
             dependencies: [
+                .product(name: "Byte", package: "swift-byte"),
                 .target(name: "PDF"),
                 .product(name: "HTML", package: "swift-html"),
                 .target(name: "PDF Test Support"),

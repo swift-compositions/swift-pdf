@@ -1,3 +1,4 @@
+import Byte
 import HTML
 import PDF
 import Testing
@@ -13,7 +14,7 @@ extension PDF.Test.Performance {
             PDF.Text("This is paragraph 4 with some content to make it realistic.")
             PDF.Text("This is paragraph 5 with some content to make it realistic.")
         }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
     }
 
     @Test(.timed(iterations: 100, warmup: 10))
@@ -54,5 +55,5 @@ private func makePDFDirect(paragraphs: Int) {
             PDF.Text("This is a paragraph with some content to make it realistic.")
         }
     }
-    let _ = [UInt8](doc)
+    let _ = [Byte](doc)
 }

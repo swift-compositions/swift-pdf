@@ -1,3 +1,4 @@
+import Byte
 import HTML
 import PDF
 import Testing
@@ -70,7 +71,7 @@ extension PDF.Test.Performance {
                 H1 { "Document \(i)" }
                 Paragraph { "This is test document number \(i)." }
             }
-            let _ = [UInt8](doc)
+            let _ = [Byte](doc)
         }
     }
 }
@@ -79,31 +80,31 @@ func makePDF(paragraphs: Int) {
     switch paragraphs {
     case 1:
         let doc = PDF.Document { Doc1() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     case 10:
         let doc = PDF.Document { Doc10() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     case 50:
         let doc = PDF.Document { Doc50() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     case 100:
         let doc = PDF.Document { Doc100() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     case 200:
         let doc = PDF.Document { Doc200() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     case 500:
         let doc = PDF.Document { Doc500() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
 
     default:
         let doc = PDF.Document { Doc1() }
-        let _ = [UInt8](doc)
+        let _ = [Byte](doc)
     }
 }
 
