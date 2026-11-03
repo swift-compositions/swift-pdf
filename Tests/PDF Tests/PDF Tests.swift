@@ -125,7 +125,7 @@ extension PDF.Test.Unit {
 
                     ```swift
                     dependencies: [
-                        .package(url: "https://github.com/coenttb/swift-pdf", from: "1.0.0")
+                        .package(url: "https://github.com/swift-compositions/swift-pdf", from: "1.0.0")
                     ]
                     ```
 
@@ -175,7 +175,7 @@ extension PDF.Test.Unit {
 
                     ## Conclusion
 
-                    For more information, visit the [GitHub repository](https://github.com/coenttb/swift-pdf).
+                    For more information, visit the [GitHub repository](https://github.com/swift-compositions/swift-pdf).
                     """
                 }
             }
