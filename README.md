@@ -4,7 +4,7 @@
 
 Generates PDF documents from HTML views and Markdown authored with a Swift result-builder DSL.
 
-Successor of `swift-html-to-pdf`, with a redesigned API. The first release will be `2.0.0`.
+Successor of `swift-html-to-pdf`, with a redesigned API. The old `HtmlToPdf` API and its 1.x tags are gone and no longer supported; see [#41](https://github.com/swift-compositions/swift-pdf/issues/41) if you still need them.
 
 ---
 
@@ -63,13 +63,13 @@ dependencies: [
 )
 ```
 
-Requires Swift 6.3.1 and macOS 26 / iOS 26 / tvOS 26 / watchOS 26 / visionOS 26.
+Requires Swift 6.4 and macOS 27 / iOS 27 / tvOS 27 / watchOS 27 / visionOS 27.
 
 ---
 
 ## Status & maintainer
 
-This package is public alpha: the redesigned swift-pdf API on `main` is unreleased and will first ship as `2.0.0`; interfaces may change until then.
+This package is public alpha. `main` is developed under `0.x` for now, and its API may change.
 
 Maintained by [Coen ten Thije Boonkkamp](https://github.com/coenttb) — available for Swift infrastructure and document-systems consulting: coen@coenttb.com.
 
