@@ -1,78 +1,10 @@
 # swift-pdf
 
-![Development Status](https://img.shields.io/badge/status-active--development-blue.svg)
+Use this package when you want to generate PDF files from Swift, with content written as HTML views or Markdown. Start from `PDF.Document`. If you only need the HTML-to-PDF renderer, use swift-pdf-html-render. If you lay out pages with `PDF.View` and don't need to write files, use swift-pdf-render.
 
-Generates PDF documents from HTML views and Markdown authored with a Swift result-builder DSL.
+## Laws
 
-Successor of `swift-html-to-pdf`, with a redesigned API. The old `HtmlToPdf` API and its 1.x tags are gone and no longer supported; see [#41](https://github.com/swift-compositions/swift-pdf/issues/41) if you still need them.
-
----
-
-## Key Features
-
-- **HTML-to-PDF rendering** — Compose pages from a typed HTML view DSL (`H1`, `Paragraph`, `Table`, `UnorderedList`, …) and render them to PDF.
-- **Markdown source** — Render Markdown blocks straight into a document with `Markdown { ... }`.
-- **Tables** — Table rendering with `colspan`/`rowspan`, headers, footers, and captions.
-- **Automatic outline** — Generate PDF bookmarks from `H1`–`H6` headings with `generateOutline: true`.
-- **CSS styling** — Apply inline styles such as `.css.textAlign(...)`, `.css.color(...)`, and page-break control.
-- **Atomic file writing** — Write a document to disk with `write(to:)`, optionally creating intermediate directories.
-- **Single import** — `import PDF` re-exports the HTML authoring DSL, the rendering pipeline, and file-system writing.
-
----
-
-## Quick Start
-
-```swift
-import PDF
-
-let document = PDF.Document(
-    info: .init(title: "Release Notes", author: "Engineering"),
-    generateOutline: true
-) {
-    H1 { "Release Notes" }
-    Paragraph {
-        "Version "
-        StrongImportance { "2.4.1" }
-        " ships table rendering and automatic bookmarks."
-    }
-    UnorderedList {
-        ListItem { "Tables with colspan and rowspan" }
-        ListItem { "Bookmarks generated from headings" }
-    }
-}
-
-try document.write(to: File("release-notes.pdf"), createIntermediates: true)
-```
-
----
-
-## Installation
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/swift-compositions/swift-pdf.git", branch: "main")
-]
-```
-
-```swift
-.target(
-    name: "YourTarget",
-    dependencies: [
-        .product(name: "PDF", package: "swift-pdf")
-    ]
-)
-```
-
-Requires Swift 6.4 and macOS 27 / iOS 27 / tvOS 27 / watchOS 27 / visionOS 27.
-
----
-
-## Status & maintainer
-
-This package is public alpha. `main` is developed under `0.x` for now, and its API may change.
-
-Maintained by [Coen ten Thije Boonkkamp](https://github.com/coenttb) — available for Swift infrastructure and document-systems consulting: coen@coenttb.com.
-
-## License
-
-Apache 2.0. See [LICENSE](LICENSE.md).
+- `PDF.Document` renders its content when it's created, so `pages` is already complete by the time you write the file.
+- A document has an `outline` only if `generateOutline` is true and the content has at least one heading. Otherwise `outline` is nil.
+- Headings count toward the outline however they're written: as HTML views, in Markdown, or nested inside a container such as a header.
+- Text is encoded as WinAnsi, with symbols ZapfDingbats can encode set in that font. Any other character goes through a small fallback map, and anything still unmapped becomes `?`. Text in Cyrillic, Chinese and similar scripts therefore comes out as question marks, and no error is thrown.

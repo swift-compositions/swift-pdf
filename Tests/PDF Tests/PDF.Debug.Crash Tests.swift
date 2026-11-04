@@ -22,17 +22,21 @@ import Testing
         #expect(context.pdf.style.font.weight == .bold)
     }
 
-    @Test func markdownPlain() {
-        let doc = PDF.Document(info: .init(title: "T", author: "T")) {
-            p { "Hello" }
+    #if HTML
+        @Test func markdownPlain() {
+            let doc = PDF.Document(info: .init(title: "T", author: "T")) {
+                p { "Hello" }
+            }
+            #expect(doc.pages.count >= 1)
         }
-        #expect(doc.pages.count >= 1)
-    }
+    #endif
 
-    @Test func markdownHeading() {
-        let doc = PDF.Document(info: .init(title: "T", author: "T")) {
-            Markdown { "# Heading" }
+    #if Markdown
+        @Test func markdownHeading() {
+            let doc = PDF.Document(info: .init(title: "T", author: "T")) {
+                Markdown { "# Heading" }
+            }
+            #expect(doc.pages.count >= 1)
         }
-        #expect(doc.pages.count >= 1)
-    }
+    #endif
 }

@@ -1,3 +1,4 @@
+#if Markdown
 import PDF
 import Testing
 
@@ -190,3 +191,4 @@ extension PDF.Test.Unit {
         }
     }
 }
+#endif
