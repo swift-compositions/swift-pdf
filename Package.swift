@@ -26,7 +26,6 @@ let package = Package(
             branch: "main",
             traits: [.trait(name: "Markdown", condition: .when(traits: ["Markdown"]))]
         ),
-        .package(url: "https://github.com/swift-compositions/swift-pdf-render.git", branch: "main"),
         .package(
             url: "https://github.com/swift-compositions/swift-pdf-html-render.git",
             branch: "main"
@@ -37,14 +36,11 @@ let package = Package(
         .target(
             name: "PDF",
             dependencies: [
-                .product(name: "PDF Rendering", package: "swift-pdf-render"),
+                // Unconditional until SwiftPM resolves mixed trait requests
+                // (swift-institute/Issues#123); the code stays behind #if HTML.
+                .product(name: "HTML", package: "swift-html"),
+                .product(name: "PDF HTML Rendering", package: "swift-pdf-html-render"),
                 .product(name: "File System", package: "swift-file-system"),
-                .product(name: "HTML", package: "swift-html", condition: .when(traits: ["HTML"])),
-                .product(
-                    name: "PDF HTML Rendering",
-                    package: "swift-pdf-html-render",
-                    condition: .when(traits: ["HTML"])
-                ),
             ]
         ),
         .target(
@@ -59,7 +55,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Byte", package: "swift-byte"),
                 .target(name: "PDF"),
-                .product(name: "HTML", package: "swift-html", condition: .when(traits: ["HTML"])),
+                .product(name: "HTML", package: "swift-html"),
                 .target(name: "PDF Test Support"),
             ],
             path: "Tests/PDF Tests"
