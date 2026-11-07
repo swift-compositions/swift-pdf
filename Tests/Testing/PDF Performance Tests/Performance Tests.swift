@@ -8,7 +8,6 @@ extension PDF {
 }
 
 extension PDF.Test.Performance {
-
     @Test(.timed(iterations: 50, warmup: 5))
     func `paragraphs 1`() {
         makePDF(paragraphs: 1)
@@ -66,7 +65,7 @@ extension PDF.Test.Performance {
 
     @Test(.timed(iterations: 10, warmup: 2))
     func `batch 10 documents`() {
-        for i in 0..<10 {
+        (0..<10).forEach { i in
             let doc = PDF.Document {
                 H1 { "Document \(i)" }
                 Paragraph { "This is test document number \(i)." }
