@@ -6,7 +6,7 @@ enum `PDF.Debug.Crash Tests` {}
 extension `PDF.Debug.Crash Tests` {
     @Suite struct DebugCrashInvestigation {
 
-        @Test func fontCopyDestroyCycle() {
+        @Test func `font copy destroy cycle`() {
             var font = PDF.Font.helvetica
             for _ in 0..<100 {
                 font = font.bold
@@ -16,7 +16,7 @@ extension `PDF.Debug.Crash Tests` {
             #expect(font.weight == .regular)
         }
 
-        @Test func nestedInoutFontAssignment() {
+        @Test func `nested inout font assignment`() {
             struct Inner { var font: PDF.Font = .helvetica }
             struct Middle { var style: Inner = .init() }
             struct Outer { var pdf: Middle = .init() }
@@ -26,7 +26,7 @@ extension `PDF.Debug.Crash Tests` {
         }
 
         #if HTML
-            @Test func markdownPlain() {
+            @Test func `markdown plain`() {
                 let doc = PDF.Document(info: .init(title: "T", author: "T")) {
                     p { "Hello" }
                 }
@@ -35,7 +35,7 @@ extension `PDF.Debug.Crash Tests` {
         #endif
 
         #if Markdown
-            @Test func markdownHeading() {
+            @Test func `markdown heading`() {
                 let doc = PDF.Document(info: .init(title: "T", author: "T")) {
                     Markdown { "# Heading" }
                 }
