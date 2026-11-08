@@ -62,7 +62,7 @@ extension PDF.Test.Snapshot {
     }
 }
 
-struct TechnicalSpecificationView: HTML.View {
+fileprivate struct TechnicalSpecificationView: HTML.View {
     var body: some HTML.View {
         TechSpecFrontMatter()
         TechSpecSections4Through6()
@@ -71,7 +71,7 @@ struct TechnicalSpecificationView: HTML.View {
     }
 }
 
-struct ComplexView: HTML.View {
+fileprivate struct ComplexView: HTML.View {
     var body: some HTML.View {
         TextStylingDemo()
         LinksDemo()
@@ -87,7 +87,7 @@ struct ComplexView: HTML.View {
     }
 }
 
-struct TableDemoView: HTML.View {
+fileprivate struct TableDemoView: HTML.View {
     var body: some HTML.View {
         TableDemoHeader()
         TableSection6_1()
@@ -96,7 +96,7 @@ struct TableDemoView: HTML.View {
     }
 }
 
-struct TableDemoView2: HTML.View {
+fileprivate struct TableDemoView2: HTML.View {
     var body: some HTML.View {
         TableSection6_4()
         TableSection6_5()
@@ -105,7 +105,7 @@ struct TableDemoView2: HTML.View {
     }
 }
 
-struct NDADemoView: HTML.View {
+fileprivate struct NDADemoView: HTML.View {
     var body: some HTML.View {
         NDADemoPreamble()
         NDADemoArticles()
