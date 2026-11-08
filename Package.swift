@@ -38,8 +38,8 @@ let package = Package(
             dependencies: [
                 // Unconditional until SwiftPM resolves mixed trait requests
                 // (swift-institute/Issues#123); the code stays behind #if HTML.
-                .product(name: "HTML", package: "swift-html", condition: .when(traits: ["HTML"])),
-                .product(name: "PDF HTML Rendering", package: "swift-pdf-html-render", condition: .when(traits: ["HTML"])),
+                .product(name: "HTML", package: "swift-html"),
+                .product(name: "PDF HTML Rendering", package: "swift-pdf-html-render"),
                 .product(name: "File System", package: "swift-file-system"),
             ]
         ),
