@@ -9,101 +9,101 @@ extension PDF {
 
 extension PDF.Test.Performance {
     @Test(.timed(iterations: 50, warmup: 5))
-    func `paragraphs 1`() {
-        makePDF(paragraphs: 1)
+    func `paragraphs 1`() throws {
+        try makePDF(paragraphs: 1)
     }
 
     @Test(.timed(iterations: 20, warmup: 2))
-    func `paragraphs 10`() {
-        makePDF(paragraphs: 10)
+    func `paragraphs 10`() throws {
+        try makePDF(paragraphs: 10)
     }
 
     @Test(.timed(iterations: 10, warmup: 1))
-    func `paragraphs 50`() {
-        makePDF(paragraphs: 50)
+    func `paragraphs 50`() throws {
+        try makePDF(paragraphs: 50)
     }
 
     @Test(.timed(iterations: 5, warmup: 1))
-    func `paragraphs 100`() {
-        makePDF(paragraphs: 100)
+    func `paragraphs 100`() throws {
+        try makePDF(paragraphs: 100)
     }
 
     @Test(.timed(iterations: 3, warmup: 1))
-    func `paragraphs 200`() {
-        makePDF(paragraphs: 200)
+    func `paragraphs 200`() throws {
+        try makePDF(paragraphs: 200)
     }
 
     @Test(.timed(iterations: 2, warmup: 1))
-    func `paragraphs 500`() {
-        makePDF(paragraphs: 500)
+    func `paragraphs 500`() throws {
+        try makePDF(paragraphs: 500)
     }
 
     @Test(.timed(iterations: 500, warmup: 50))
-    func `throughput 1 paragraph`() {
-        makePDF(paragraphs: 1)
+    func `throughput 1 paragraph`() throws {
+        try makePDF(paragraphs: 1)
     }
 
     @Test(.timed(iterations: 100, warmup: 10))
-    func `throughput 10 paragraphs`() {
-        makePDF(paragraphs: 10)
+    func `throughput 10 paragraphs`() throws {
+        try makePDF(paragraphs: 10)
     }
 
     @Test(.timed(iterations: 20, warmup: 2))
-    func `throughput 50 paragraphs`() {
-        makePDF(paragraphs: 50)
+    func `throughput 50 paragraphs`() throws {
+        try makePDF(paragraphs: 50)
     }
 
     @Test(.timed(iterations: 10, warmup: 1))
-    func `throughput 100 paragraphs`() {
-        makePDF(paragraphs: 100)
+    func `throughput 100 paragraphs`() throws {
+        try makePDF(paragraphs: 100)
     }
 
     @Test(.timed(iterations: 2, warmup: 1))
-    func `throughput 500 paragraphs`() {
-        makePDF(paragraphs: 500)
+    func `throughput 500 paragraphs`() throws {
+        try makePDF(paragraphs: 500)
     }
 
     @Test(.timed(iterations: 10, warmup: 2))
-    func `batch 10 documents`() {
+    func `batch 10 documents`() throws {
         (0..<10).forEach { i in
             let doc = PDF.Document {
                 H1 { "Document \(i)" }
                 Paragraph { "This is test document number \(i)." }
             }
-            _ = try? [Byte](doc)
+            _ = try [Byte](doc)
         }
     }
 }
 
-func makePDF(paragraphs: Int) {
+func makePDF(paragraphs: Int) throws(PDF.Writer.Error) {
     switch paragraphs {
     case 1:
         let doc = PDF.Document { Doc1() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     case 10:
         let doc = PDF.Document { Doc10() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     case 50:
         let doc = PDF.Document { Doc50() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     case 100:
         let doc = PDF.Document { Doc100() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     case 200:
         let doc = PDF.Document { Doc200() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     case 500:
         let doc = PDF.Document { Doc500() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
 
     default:
         let doc = PDF.Document { Doc1() }
-        _ = try? [Byte](doc)
+        _ = try [Byte](doc)
     }
 }
 
