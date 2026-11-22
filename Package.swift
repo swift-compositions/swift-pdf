@@ -31,6 +31,8 @@ let package = Package(
             branch: "main"
         ),
         .package(url: "https://github.com/swift-compositions/swift-file-system.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-kernel.git", branch: "main"),
+        .package(url: "https://github.com/swift-compositions/swift-pdf-render.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -41,6 +43,8 @@ let package = Package(
                 .product(name: "HTML", package: "swift-html"),
                 .product(name: "PDF HTML Rendering", package: "swift-pdf-html-render"),
                 .product(name: "File System", package: "swift-file-system"),
+                .product(name: "Kernel", package: "swift-kernel"),
+                .product(name: "PDF Rendering", package: "swift-pdf-render"),
             ]
         ),
         .target(
