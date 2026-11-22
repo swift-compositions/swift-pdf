@@ -35,7 +35,7 @@ extension Test.Snapshot.Strategy where Value == PDF.Document, Format == Swift.St
 }
 
 private func appendOutline(
-    _ items: [ISO_32000.Outline.Item],
+    _ items: [ISO.`32000`.Outline.Item],
     to lines: inout [Swift.String],
     indent: Int
 ) {
